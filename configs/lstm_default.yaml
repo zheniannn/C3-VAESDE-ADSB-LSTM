@@ -1,0 +1,27 @@
+seed: 42
+data_dir: data
+output_dir: outputs/lstm
+train_file: X_train.npy
+test_file: X_test.npy
+
+debug_mode: false
+debug_train_size: 100000
+debug_test_size: 20000
+
+sequence_length: 30
+n_features: 4
+
+batch_size: 4096
+epochs: 5
+learning_rate: 0.001
+weight_decay: 0.000001
+
+hidden_dim: 128
+num_layers: 2
+dropout: 0.1
+model_type: lstm
+
+gradient_clip: 1.0
+num_workers: 0
+
+threshold_quantiles: [0.90, 0.95, 0.99]

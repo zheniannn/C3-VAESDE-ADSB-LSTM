@@ -1,0 +1,13 @@
+data/*.npy
+data/*.csv
+outputs/*
+models/*
+__pycache__/
+.pytest_cache/
+.venv/
+*.egg-info/
+*.pyc
+.DS_Store
+
+!data/.gitkeep
+!outputs/.gitkeep
