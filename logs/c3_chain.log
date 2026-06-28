@@ -1,0 +1,55 @@
+### C3 TRAIN ###
+Device: cuda
+Loading data ...
+  X_train: shape=(1412436, 30, 4)  dtype=float64  mean=-0.0066  std=1.1039  min=-16.4073  max=13.2961
+  X_test: shape=(160946, 30, 4)  dtype=float64  mean=-0.0145  std=1.0715  min=-18.1572  max=9.9313
+Full mode: 1,412,436 train / 160,946 test — copying to RAM ...
+  X_train in RAM (0.68 GB)
+  X_test  in RAM (0.08 GB)
+Model: LSTM  params=201,220
+
+Epoch    Train Loss     Test Loss
+-----------------------------------
+    1      0.136305      0.023360
+    2      0.022268      0.016185
+    3      0.017864      0.014943
+    4      0.015834      0.013163
+    5      0.014071      0.011961
+
+Checkpoint: outputs/lstm/motion_lstm.pt
+History:    outputs/lstm/history.csv
+### C3 SCORE ###
+Loaded checkpoint: outputs/lstm/motion_lstm.pt
+Scoring train sequences ...
+  Saved 1,412,436 rows
+Scoring test sequences ...
+  Saved 160,946 rows
+
+  Quantile     Threshold   Test flag rate
+------------------------------------------
+       p90      0.032411            9.8%
+       p95      0.047617            4.9%
+       p99      0.085636            0.9%
+
+Thresholds saved: outputs/lstm/lstm_thresholds.csv
+
+Train MSE  mean=0.012082  p50=0.005103  p95=0.047617
+Test  MSE  mean=0.011961  p50=0.005065  p95=0.047159
+### C3 STRESS ###
+Loaded checkpoint: outputs/lstm/motion_lstm.pt
+Train p95 threshold: 0.047617
+
+Using 50,000 test sequences
+
+  Case                         Mean MSE     p95 MSE      Det%
+  ------------------------------------------------------------
+  clean                        0.011919    0.047100     4.9%
+  speed_scaled_1.5             0.036253    0.117283    23.2%
+  speed_scaled_2.0             0.083620    0.257358    53.7%
+  random_walk_velocity         1.223772    1.675375   100.0%
+  sudden_turn_90               0.101882    0.192573    87.1%
+  position_jump                0.198924    0.246186   100.0%
+  stationary_clutter           0.001201    0.001564     0.1%
+
+Saved: outputs/lstm/lstm_stress_summary.csv
+### C3 CHAIN COMPLETE ###
